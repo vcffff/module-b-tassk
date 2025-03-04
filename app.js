@@ -29,4 +29,4 @@ const server = http.createServer((req, res) => {
   res.end("index.html");
 });
 
-server.listen(8080, () => console.log("Static server running on port 8080"));
+server.listen(8080, () => console.log("magaradzha"));
