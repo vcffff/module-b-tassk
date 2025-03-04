@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Darker+Grotesque:wght@300..900&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Titan+One&display=swap');
+
+body {
+    font-family:Montserrat ;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+    height: 100vh;
+    
+}
+.login-container {
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+button {
+    width: 114%;
+    padding: 10px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+   border-radius:6%;
+}
+
+.dropdown select {
+    width: 200px;
+    padding: 5px 10px;
+    margin: 40px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    font-size: 14px;
+    appearance: none;
+    background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="gray" d="M7 10l5 5 5-5H7z"/></svg>') no-repeat right 8px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.dropdown select:hover,
+.dropdown select:focus {
+    border-color: black;
+    outline: none;
+}
+@media screen and (max-width: 768px) {
+    .hello {
+        width: 90%; /* Сделает блок адаптивным */
+        max-width: 640px; /* Не даст растянуться больше */
+        margin-left: auto; /* Центрирует */
+        margin-right: auto; /* Центрирует */
+    }
+}

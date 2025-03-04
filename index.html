@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" defer></script>
+<link rel="stylesheet" href="style.css">
+    <style>
+        @media screen and (max-width: 768px) {
+    .hello {
+        width: 90%; /* Сделает блок адаптивным */
+        max-width: 640px; /* Не даст растянуться больше */
+        margin-left: auto; /* Центрирует */
+        margin-right: auto; /* Центрирует */
+    }
+}
+
+        body {
+            
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p id="message" style="color: red;"></p>
+    </div>
+
+    <script>
+        const users = {
+            "demo1": "d71b58516dd436c283fb89dd4bb5389d",
+            "demo2": "f71080932ba7b5de0fe9c6dbfa737653"
+        };
+
+        function md5(string) {
+            var crypto = new TextEncoder().encode(string);
+            return crypto.subarray(0, 16).reduce((acc, byte) => acc + byte.toString(16).padStart(2, '0'), '');
+        }
+
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var message = document.getElementById("message");
+            
+            if (users[username] && users[username] === CryptoJS.MD5(password).toString()
+            ) {
+                message.style.color = "green";
+                message.innerText = "Login successful!";
+                localStorage.setItem("authenticated", "true");
+                window.location.href = "protected.html";
+            } else {
+                message.innerText = "Invalid username or password!";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="font-family: Montserrat;">
+    <h1 style="font-size: 60px;">Bild by user's Data</h1>
+    <div class="hello" style="height: 300px; overflow-y: scroll; width: 640px; padding-left: 30px; border: 2px solid black; display: flex; flex-direction: column;
+    padding: 50px;">
+        <div class="dropdown">
+            <select>
+                <option selected disabled>Select Month</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+            </select>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <div>Token</div>
+            <div style="display: flex; gap: 60px;">
+                <div>Time</div>
+                <div>Per sec</div>
+                <div>Total</div>
+            </div>
+        </div>      
+        <hr style="color: black; height: 1px;">
+        
+        <div class="main" style="display: grid; grid-template-columns: 350px 50px 90px 100px; column-gap: 30px;">
+            <div><b>Service</b></div>
+            <div><b>Usage (ms)</b></div>
+            <div><b></b></div>
+        </div>
+    </div>
+    <div style="display: flex;justify-content: space-around;width: 1100px;">
+        <div>
+    <h1 style="text-align: start;" class="damn"></h1>
+</div>
+
+<div>
+    <h1 class="damn2"></h1>
+</div>
+   </div>
+
+    <script>
+        async function magzhan() {
+    let response = await fetch('output.json')
+    let data = await response.json()
+    
+    let negr = document.querySelector('.negr')
+    if (negr) {
+        negr.textContent = data[0]?.service_name || "No data"
+    }
+
+
+    let mainDiv = document.querySelector('.main')
+    if (!mainDiv) return  
+   
+    mainDiv.innerHTML = '<div><b>Service</b></div><div><b></b></div><div><b></b></div><div><b></b></div>'  
+    let counter = 0
+
+    for (let i = 0; i < data.length; i++) {
+        let serviceName = document.createElement('div')
+        serviceName.textContent = data[i].service_name
+        mainDiv.appendChild(serviceName)
+
+        let usageTime = document.createElement('div')
+        usageTime.textContent = data[i].usage_duration_in_ms+ 's'
+        mainDiv.appendChild(usageTime)
+
+        let persec=document.createElement('div')
+        persec.textContent='$'+data[i].service_cost_per_ms
+        mainDiv.appendChild(persec)
+
+       
+
+        
+        let totalCost = data[i].service_cost_per_ms * data[i].usage_duration_in_ms
+        let total = document.createElement('div')
+        total.textContent = '$' + totalCost.toFixed(4)  
+        mainDiv.appendChild(total)
+
+        counter += totalCost  
+        
+
+       
+    }
+
+    let gentotal=document.querySelector('.damn')
+    gentotal.textContent='Total: '
+   let gentotal2=document.querySelector('.damn2')
+   gentotal2.textContent=`$${counter.toFixed(2)}`
+    
+}
+
+magzhan()
+
+    </script>
+</body>
+</html>
